@@ -1,5 +1,15 @@
 #include <idc.idc>
 
+static write_result(name, num_decompiled, num_functions) {
+  auto ratio, pct, pct_fraction;
+
+  ratio = 100 * 100 * num_decompiled / num_functions;
+  pct = ratio / 100;
+  pct_fraction = ratio % 100;
+
+  msg("%s: %d / %d (%d.%02d%%)\n", name, num_decompiled, num_functions, pct, pct_fraction);
+}
+
 static main() {
   auto ea,x,num_functions,num_decompiled,c,segname;
 
@@ -17,7 +27,8 @@ static main() {
       num_decompiled = num_decompiled + 1;
     }
   }
-  msg("RESULTS: %d / %d\n", num_decompiled, num_functions);
+  write_result("RESULTS", num_decompiled, num_functions);
+
 
   num_functions = 0;
   num_decompiled = 0;
@@ -41,7 +52,7 @@ static main() {
       num_decompiled = num_decompiled + 1;
     }
   }
-  msg("EXCLUDING BNET: %d / %d\n", num_decompiled, num_functions);
+  write_result("EXCLUDING BNET", num_decompiled, num_functions);
 
 
   num_functions = 0;
@@ -76,7 +87,5 @@ static main() {
       num_decompiled = num_decompiled + 1;
     }
   }
-  msg("EXCLUDING MULTIPLAYER AND REPLAYS: %d / %d\n", num_decompiled, num_functions);
-
-
+  write_result("EXCLUDING MULTIPLAYER AND REPLAYS", num_decompiled, num_functions);
 }
