@@ -16,8 +16,13 @@ static is_bnet_segment(segname) {
   if (strstr(segname, "Modem") != -1) return 1;
   if (strstr(segname, "statwrite") != -1) return 1;
   if (strstr(segname, "codec") != -1) return 1;
+  if (strstr(segname, "grid") != -1) return 1;
   if (strstr(segname, "League") != -1) return 1;
   if (strstr(segname, "win_") != -1) return 1;
+  if (strstr(segname, "appcrit") != -1) return 1;
+  if (strstr(segname, "BlizzardError") != -1) return 1;
+  if (strstr(segname, "inspectorreport") != -1) return 1;
+  if (strstr(segname, "Utils") != -1) return 1;
   return 0;
 }
 
